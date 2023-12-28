@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Clean YouTube Search</title>
+    <style>
+
+        
+        body{
+            background-color: #1c1c1c
+        }
+
+        h1{
+            font-size:xx-large;
+            font-family: monospace;
+            color:ghostwhite;
+            text-decoration: underline;
+            cursor: pointer;
+            text-align: center;
+            
+        }
+
+        .search {
+            position: relative;
+            padding: 15px 0 0;
+            margin-top: 10px;
+            width: 50%;
+            margin: auto;
+        }
+
+        .search_field {
+            font-family: monospace;
+            width: 100%;
+            border: 0;
+            border-bottom: 2px solid #9b9b9b;
+            outline: 0;
+            font-size: 1.3rem;
+            color: #ffffff;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+
+            &::placeholder {
+                color: transparent;
+            }
+
+            &:placeholder-shown ~ .form__label {
+              font-size: 1.3rem;
+              cursor: text;
+              top: 20px;
+            }
+        }
+
+        .search_field:focus {
+          ~ .form__label {
+            position: absolute;
+            top: 0;
+            display: block;
+            transition: 0.2s;
+            font-size: 1rem;
+            color: #ffffff;
+            font-weight:700;    
+          }
+          padding-bottom: 6px;  
+          font-weight: 700;
+          border-width: 3px;
+          border-image: linear-gradient(to right, #ffffff,#ffffff);
+          border-image-slice: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+    <br>
+    <h1 onclick="titleClick()"> Clean YouTube Search</h1>
+    <br>
+
+    <div class="search">
+        <input type="input" autocomplete="off" onkeydown="enterSearch()" class="search_field" placeholder="name" name="name" id='name'/>
+    </div>
+
+
+    <script>
+        function titleClick() {
+            location.reload();
+        }
+
+        function enterSearch() {
+            console.log(event.key)
+            if (event.key === "Enter") {
+                console.log("Success")
+            }
+        }
+
+    </script>
+</body>
