@@ -4,7 +4,6 @@
     <title>Clean YouTube Search</title>
     <style>
 
-        
         body{
             background-color: #1c1c1c
         }
@@ -67,30 +66,77 @@
           border-image-slice: 1;
         }
 
+        .card {
+            padding: 100px 0 0 0;
+            height: 30px;
+            width: 250px;
+            background-color: rgb(48, 49, 52);
+            border-radius: 25px;
+            cursor: pointer;
+            margin: auto;
+        }
+
     </style>
 </head>
 
-<body>
+<body onload="clearSearch()">
     <br>
-    <h1 onclick="titleClick()"> Clean YouTube Search</h1>
+    <h1 onclick="clickTitle()"> Clean YouTube Search</h1>
     <br>
 
     <div class="search">
-        <input type="input" autocomplete="off" onkeydown="enterSearch()" class="search_field" placeholder="name" name="name" id='name'/>
+        <input type="input" autofocus onkeydown="enterSearch()" class="search_field" name="search_field" id='search_field'/>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div onclick="clickWatchLater()" class="card" id="WatchLater">
+        <h2 style="color: ghostwhite; font-family: monospace; position: relative; bottom: 65px; text-align: center;">WatchLater</h2>
+            <!-- You might want to insert YouTube's Watch Later Playlist Icon here. -->
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div onclick="clickSubscribedVideos()" class="card" id="SubscribedVideos">
+        <h2 style="color: ghostwhite; font-family: monospace; position: relative; bottom: 65px; text-align: center;">SubscribedVideos</h2>
     </div>
 
 
     <script>
-        function titleClick() {
+        window.addEventListener( "pageshow", function ( event ) {
+            var historyTraversal = event.persisted || 
+                         ( typeof window.performance != "undefined" && 
+                              window.performance.navigation.type === 2 );
+            if ( historyTraversal ) {
+                clearSearch();
+            }
+        });
+
+        function clearSearch() {
+            document.getElementById("search_field").value = ""
+        }
+
+        function clickTitle() {
             location.reload();
         }
 
         function enterSearch() {
-            console.log(event.key)
             if (event.key === "Enter") {
-                console.log("Success")
+                let searchField = document.getElementById("search_field").value;
+                window.open("https://www.youtube.com/results?search_query=" + searchField, "_self");
             }
         }
 
+        function clickSubscribedVideos() {
+            window.open("https://www.youtube.com/feed/subscriptions", "_self");
+        }
+
+        function clickWatchLater() {
+            window.open("https://www.youtube.com/playlist?list=WL", "_self");
+        }
     </script>
 </body>
